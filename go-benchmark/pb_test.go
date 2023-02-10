@@ -1,12 +1,11 @@
 package go_benchmark
 
 import (
-	"testing"
-	"github.com/golang/protobuf/proto"
-	"github.com/json-iterator/go"
 	"encoding/json"
-	"github.com/json-iterator/go-benchmark/testobject"
 	"git.apache.org/thrift.git/lib/go/thrift"
+	"github.com/golang/protobuf/proto"
+	"github.com/stillmatic/json-go-benchmark/go-benchmark/testobject"
+	"testing"
 )
 
 func Benchmark_protobuf(b *testing.B) {
@@ -21,7 +20,7 @@ func Benchmark_protobuf(b *testing.B) {
 
 func Benchmark_jsoniter2(b *testing.B) {
 	b.ReportAllocs()
-	obj := PbTestObject{"1","2","3","4","5","6","7","8","9","10"}
+	obj := PbTestObject{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}
 	//obj := With2Fields{"1", "2"}
 	data, _ := jsoniter.Marshal(&obj)
 	//buf := &bytes.Buffer{}
@@ -67,4 +66,3 @@ func Benchmark_thrift(b *testing.B) {
 		obj.Read(protocol)
 	}
 }
-

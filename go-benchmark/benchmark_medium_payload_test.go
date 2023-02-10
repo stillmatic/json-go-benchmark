@@ -2,10 +2,10 @@ package go_benchmark
 
 import (
 	"testing"
-	"github.com/json-iterator/go"
+
+	"bytes"
 	"encoding/json"
 	"github.com/mailru/easyjson/jlexer"
-	"bytes"
 	"github.com/mailru/easyjson/jwriter"
 )
 
