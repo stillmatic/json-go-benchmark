@@ -33,7 +33,7 @@ func Benchmark_jsoniter_read(b *testing.B) {
 	//obj := PbTestObject{31415926, 61415923, 31415269, 53141926, 13145926, 43115926, 31419265, 23141596, 43161592, 112}
 	obj := PbTestObject{112, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	data, _ := jsoniter.Marshal(&obj)
-	iter := jsoniter.NewIterator()
+	iter := jsoniter.NewIterator(jsoniter.ConfigDefault)
 	for i := 0; i < b.N; i++ {
 		iter.ResetBytes(data)
 		iter.ReadVal(&obj)
@@ -44,7 +44,7 @@ func Benchmark_jsoniter_write(b *testing.B) {
 	b.ReportAllocs()
 	obj := PbTestObject{31415926, 61415923, 31415269, 53141926, 13145926, 43115926, 31419265, 23141596, 43161592, 112}
 	buf := &bytes.Buffer{}
-	stream := jsoniter.NewStream(buf, 4096)
+	stream := jsoniter.NewStream(jsoniter.ConfigDefault, buf, 4096)
 	for i := 0; i < b.N; i++ {
 		buf.Reset()
 		stream.WriteVal(&obj)

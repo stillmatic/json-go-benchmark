@@ -5,12 +5,14 @@ import (
 
 	"bytes"
 	"encoding/json"
+
+	jsoniter "github.com/json-iterator/go"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"
 )
 
 /*
-   encoding/json
+encoding/json
 */
 func BenchmarkDecodeStdStructMedium(b *testing.B) {
 	b.ReportAllocs()

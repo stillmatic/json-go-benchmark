@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
+	jsoniter "github.com/json-iterator/go"
+
 	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/golang/protobuf/proto"
 	"github.com/stillmatic/json-go-benchmark/go-benchmark/testobject"
@@ -26,7 +28,7 @@ func Benchmark_jsoniter2(b *testing.B) {
 	data, _ := jsoniter.Marshal(&obj)
 	//buf := &bytes.Buffer{}
 	//stream := jsoniter.NewStream(buf, 4096)
-	iter := jsoniter.NewIterator()
+	iter := jsoniter.NewIterator(jsoniter.ConfigDefault)
 	for i := 0; i < b.N; i++ {
 		iter.ResetBytes(data)
 		iter.ReadVal(&obj)

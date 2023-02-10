@@ -1,10 +1,11 @@
 package with_10_string_fields
 
 import (
-	"testing"
-	"github.com/mailru/easyjson/jwriter"
 	"bytes"
+	"testing"
+
 	"github.com/json-iterator/go"
+	"github.com/mailru/easyjson/jwriter"
 )
 
 func Benchmark_easyjson(b *testing.B) {
@@ -26,7 +27,7 @@ func Benchmark_jsoniter(b *testing.B) {
 	obj := PbTestObject{str, str, str, str, str, str, str, str, str, str}
 	//obj := PbTestObject{112, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	b.ReportAllocs()
-	stream := jsoniter.NewStream(nil, 512)
+	stream := jsoniter.NewStream(jsoniter.ConfigDefault, nil, 512)
 	for i := 0; i < b.N; i++ {
 		stream.Reset(nil)
 		stream.WriteVal(obj)

@@ -1,10 +1,11 @@
 package go_benchmark
 
 import (
+	"encoding/json"
 	"testing"
+
 	"github.com/buger/jsonparser"
 	"github.com/json-iterator/go"
-	"encoding/json"
 	"github.com/mailru/easyjson/jlexer"
 )
 
@@ -39,9 +40,9 @@ func BenchmarkJsonParserSmall(b *testing.B) {
 	}
 }
 
-func BenchmarkJsnoiterPullSmall(b *testing.B) {
+func BenchmarkJsoniterPullSmall(b *testing.B) {
 	b.ReportAllocs()
-	iter := jsoniter.ParseBytes(smallFixture)
+	iter := jsoniter.ParseBytes(jsoniter.ConfigDefault, smallFixture)
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		var data SmallPayload
@@ -63,8 +64,8 @@ func BenchmarkJsnoiterPullSmall(b *testing.B) {
 	}
 }
 
-func BenchmarkJsnoiterReflectSmall(b *testing.B) {
-	iter := jsoniter.ParseBytes(smallFixture)
+func BenchmarkJsoniterReflectSmall(b *testing.B) {
+	iter := jsoniter.ParseBytes(jsoniter.ConfigDefault, smallFixture)
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -75,7 +76,7 @@ func BenchmarkJsnoiterReflectSmall(b *testing.B) {
 }
 
 /*
-   encoding/json
+encoding/json
 */
 func BenchmarkEncodingJsonStructSmall(b *testing.B) {
 	b.ReportAllocs()

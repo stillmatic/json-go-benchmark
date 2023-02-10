@@ -1,16 +1,17 @@
 package go_benchmark
 
 import (
-	"testing"
-	"github.com/json-iterator/go"
-	"os"
 	"encoding/json"
-	"github.com/buger/jsonparser"
 	"io/ioutil"
+	"os"
+	"testing"
+
+	"github.com/buger/jsonparser"
+	"github.com/json-iterator/go"
 )
 
 func Test_jsonparser_skip(t *testing.T) {
-	file, _ := os.Open("/tmp/large-file.json")
+	file, _ := os.Open("../testdata/large-file.json")
 	bytes, _ := ioutil.ReadAll(file)
 	file.Close()
 	total := 0
@@ -24,8 +25,8 @@ func Test_jsonparser_skip(t *testing.T) {
 
 func Test_jsoniter_skip(t *testing.T) {
 	for i := 0; i < 100; i++ {
-		file, _ := os.Open("/tmp/large-file.json")
-		iter := jsoniter.Parse(file, 4096)
+		file, _ := os.Open("../testdata/large-file.json")
+		iter := jsoniter.Parse(jsoniter.ConfigDefault, file, 4096)
 		total := 0
 		for iter.ReadArray() {
 			iter.Skip()
@@ -41,7 +42,7 @@ func Test_jsoniter_skip(t *testing.T) {
 func Benchmark_jsonparser(b *testing.B) {
 	b.ReportAllocs()
 	for n := 0; n < b.N; n++ {
-		file, _ := os.Open("/tmp/large-file.json")
+		file, _ := os.Open("../testdata/large-file.json")
 		bytes, _ := ioutil.ReadAll(file)
 		file.Close()
 		total := 0
@@ -66,7 +67,7 @@ func Benchmark_jsoniter(b *testing.B) {
 	b.ReportAllocs()
 	for n := 0; n < b.N; n++ {
 		file, _ := os.Open("/tmp/large-file.json")
-		iter := jsoniter.Parse(file, 4096)
+		iter := jsoniter.Parse(jsoniter.ConfigDefault, file, 4096)
 		for iter.ReadArray() {
 			iter.Skip()
 		}

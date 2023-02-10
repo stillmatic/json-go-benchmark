@@ -5,6 +5,7 @@ package testobject
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 
 	"github.com/apache/thrift/lib/go/thrift"
@@ -83,12 +84,12 @@ func (p *ThriftTestObject) GetField10() string {
 	return p.Field10
 }
 func (p *ThriftTestObject) Read(iprot thrift.TProtocol) error {
-	if _, err := iprot.ReadStructBegin(); err != nil {
+	if _, err := iprot.ReadStructBegin(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
 	}
 
 	for {
-		_, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+		_, fieldTypeId, fieldId, err := iprot.ReadFieldBegin(context.Background())
 		if err != nil {
 			return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
 		}
@@ -137,22 +138,22 @@ func (p *ThriftTestObject) Read(iprot thrift.TProtocol) error {
 				return err
 			}
 		default:
-			if err := iprot.Skip(fieldTypeId); err != nil {
+			if err := iprot.Skip(context.Background(), fieldTypeId); err != nil {
 				return err
 			}
 		}
-		if err := iprot.ReadFieldEnd(); err != nil {
+		if err := iprot.ReadFieldEnd(context.Background()); err != nil {
 			return err
 		}
 	}
-	if err := iprot.ReadStructEnd(); err != nil {
+	if err := iprot.ReadStructEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
 	}
 	return nil
 }
 
 func (p *ThriftTestObject) ReadField1(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 1: ", err)
 	} else {
 		p.Field1 = v
@@ -161,7 +162,7 @@ func (p *ThriftTestObject) ReadField1(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField2(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 2: ", err)
 	} else {
 		p.Field2 = v
@@ -170,7 +171,7 @@ func (p *ThriftTestObject) ReadField2(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField3(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 3: ", err)
 	} else {
 		p.Field3 = v
@@ -179,7 +180,7 @@ func (p *ThriftTestObject) ReadField3(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField4(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 4: ", err)
 	} else {
 		p.Field4 = v
@@ -188,7 +189,7 @@ func (p *ThriftTestObject) ReadField4(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField5(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 5: ", err)
 	} else {
 		p.Field5 = v
@@ -197,7 +198,7 @@ func (p *ThriftTestObject) ReadField5(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField6(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 6: ", err)
 	} else {
 		p.Field6 = v
@@ -206,7 +207,7 @@ func (p *ThriftTestObject) ReadField6(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField7(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 7: ", err)
 	} else {
 		p.Field7 = v
@@ -215,7 +216,7 @@ func (p *ThriftTestObject) ReadField7(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField8(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 8: ", err)
 	} else {
 		p.Field8 = v
@@ -224,7 +225,7 @@ func (p *ThriftTestObject) ReadField8(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField9(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 9: ", err)
 	} else {
 		p.Field9 = v
@@ -233,7 +234,7 @@ func (p *ThriftTestObject) ReadField9(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) ReadField10(iprot thrift.TProtocol) error {
-	if v, err := iprot.ReadString(); err != nil {
+	if v, err := iprot.ReadString(context.Background()); err != nil {
 		return thrift.PrependError("error reading field 10: ", err)
 	} else {
 		p.Field10 = v
@@ -242,7 +243,7 @@ func (p *ThriftTestObject) ReadField10(iprot thrift.TProtocol) error {
 }
 
 func (p *ThriftTestObject) Write(oprot thrift.TProtocol) error {
-	if err := oprot.WriteStructBegin("ThriftTestObject"); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "ThriftTestObject", thrift.STRUCT, 1); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
 	}
 	if p != nil {
@@ -277,140 +278,140 @@ func (p *ThriftTestObject) Write(oprot thrift.TProtocol) error {
 			return err
 		}
 	}
-	if err := oprot.WriteFieldStop(); err != nil {
+	if err := oprot.WriteFieldStop(context.Background()); err != nil {
 		return thrift.PrependError("write field stop error: ", err)
 	}
-	if err := oprot.WriteStructEnd(); err != nil {
+	if err := oprot.WriteStructEnd(context.Background()); err != nil {
 		return thrift.PrependError("write struct stop error: ", err)
 	}
 	return nil
 }
 
 func (p *ThriftTestObject) writeField1(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field1", thrift.STRING, 1); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field1", thrift.STRING, 1); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:field1: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field1)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field1)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field1 (1) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 1:field1: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField2(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field2", thrift.STRING, 2); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field2", thrift.STRING, 2); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:field2: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field2)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field2)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field2 (2) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 2:field2: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField3(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field3", thrift.STRING, 3); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field3", thrift.STRING, 3); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:field3: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field3)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field3)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field3 (3) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 3:field3: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField4(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field4", thrift.STRING, 4); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field4", thrift.STRING, 4); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 4:field4: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field4)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field4)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field4 (4) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 4:field4: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField5(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field5", thrift.STRING, 5); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field5", thrift.STRING, 5); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 5:field5: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field5)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field5)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field5 (5) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 5:field5: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField6(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field6", thrift.STRING, 6); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field6", thrift.STRING, 6); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 6:field6: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field6)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field6)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field6 (6) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 6:field6: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField7(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field7", thrift.STRING, 7); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field7", thrift.STRING, 7); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 7:field7: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field7)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field7)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field7 (7) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 7:field7: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField8(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field8", thrift.STRING, 8); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field8", thrift.STRING, 8); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 8:field8: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field8)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field8)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field8 (8) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 8:field8: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField9(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field9", thrift.STRING, 9); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field9", thrift.STRING, 9); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 9:field9: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field9)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field9)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field9 (9) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 9:field9: ", p), err)
 	}
 	return err
 }
 
 func (p *ThriftTestObject) writeField10(oprot thrift.TProtocol) (err error) {
-	if err := oprot.WriteFieldBegin("field10", thrift.STRING, 10); err != nil {
+	if err := oprot.WriteFieldBegin(context.Background(), "field10", thrift.STRING, 10); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field begin error 10:field10: ", p), err)
 	}
-	if err := oprot.WriteString(string(p.Field10)); err != nil {
+	if err := oprot.WriteString(context.Background(), string(p.Field10)); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T.field10 (10) field write error: ", p), err)
 	}
-	if err := oprot.WriteFieldEnd(); err != nil {
+	if err := oprot.WriteFieldEnd(context.Background()); err != nil {
 		return thrift.PrependError(fmt.Sprintf("%T write field end error 10:field10: ", p), err)
 	}
 	return err

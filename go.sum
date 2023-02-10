@@ -1,5 +1,3 @@
-github.com/apache/thrift v0.0.0-20170204052355-a3d6be906b33 h1:5NbmG1JuB2pRkciwTRpZRjei7zAlMVNSd3zTNnWcoDc=
-github.com/apache/thrift v0.0.0-20170204052355-a3d6be906b33/go.mod h1:fPE2ZNJGynbRyZ4dJvy6G277gSllfV2HJqblrnkyeyg=
 github.com/apache/thrift v0.17.0 h1:cMd2aj52n+8VoAtvSvLn4kDC3aZ6IAkBuqWQ2IDu7wo=
 github.com/apache/thrift v0.17.0/go.mod h1:OLxhMRJxomX+1I/KUw03qoV3mMz16BwaKI+d4fPBx7Q=
 github.com/buger/jsonparser v0.0.0-20160922145946-f04e003e4115 h1:M2IjgBSweeigJ436gqVAQ8KYKdwrdQ91IV5HTamh3Co=
