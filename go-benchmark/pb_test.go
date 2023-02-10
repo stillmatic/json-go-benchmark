@@ -2,10 +2,11 @@ package go_benchmark
 
 import (
 	"encoding/json"
-	"git.apache.org/thrift.git/lib/go/thrift"
+	"testing"
+
+	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/golang/protobuf/proto"
 	"github.com/stillmatic/json-go-benchmark/go-benchmark/testobject"
-	"testing"
 )
 
 func Benchmark_protobuf(b *testing.B) {
